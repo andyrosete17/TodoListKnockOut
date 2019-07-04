@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TDL\TDL.csproj">
+    <ProjectReference Include="..\TDL\TDL.Front.csproj">
       <Project>{E1B59557-FA7C-41F9-ACEA-1695B8918ED0}</Project>
-      <Name>TDL</Name>
+      <Name>TDL.Front</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
