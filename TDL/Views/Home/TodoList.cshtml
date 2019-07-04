@@ -17,14 +17,14 @@
                         <label class="status statusComplete">Completed</label>
                         <!-- /ko -->
                         <!--ko ifnot: completed -->
-                        <label class="status statusInProgress">InProgress</label>
+                        <label class="status statusInProgress">Pending</label>
                         <!-- /ko -->
                     </div>
                 </li>
             </ul>          
 
             <input class="txt" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: addToDoItem" placeholder="Add new todo item" autofocus />
-            <button data-bind="click: addToDoItem">Add new item</button>
+            <button data-bind="click: addToDoItem">Add new task</button>
 
         </div>
     </asp:Content>
