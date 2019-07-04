@@ -22,3 +22,89 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.todo-list {
+    margin: 5px;
+    padding: 0;
+    list-style: none;
+}
+
+.todo-list li {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: 2px solid #ededed;
+    }
+
+.todo-list li.completed label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.clear-completed,
+html .clear-completed:active {
+    float: right;
+    position: relative;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.clear-completed:hover {
+    text-decoration: underline;
+}
+
+.todo-list li:last-child {
+    border-bottom: none;
+}
+
+.todo-list li .destroy {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 55%;
+    bottom: 0px;
+    width: 30px;
+    height: 35px;
+    margin: auto 0;
+    font-size: 30px;
+    color: #cc9a9a;
+    margin-bottom: 11px;
+    transition: color 0.2s ease-out;
+    margin-top: -11px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+    .todo-list li .destroy:hover {
+        color: #af5b5e;
+    }
+
+    .todo-list li .destroy:after {
+        content: '×';
+    }
+
+.todo-list li:hover .destroy {
+    display: block;
+}
+.items_view {
+    width: 40%;
+    height: auto;
+}
+
+.todo-list li .status {
+    right: 45%;
+    position:absolute;
+    
+}
+.todo-list li .statusComplete {
+    color: green !important;
+}
+
+.todo-list li .statusInProgress {
+    color: orangered;
+}

@@ -1,28 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Todo Page";
 }
-<asp:Content ContentPlaceHolderID="BodyContent" runat="server">
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <table>
-            <thead>
-                <tr>
-                    <td>ToDo List</td>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: toDoItems">
-                <tr>
-                    <td><label data-bind="text: toDoItem"></label></td>
-                    <td><a href="#" data-bind="click: $root.removeToDoItem">Remove</a></td>
-                </tr>
-            </tbody>
-        </table>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <asp:Content ContentPlaceHolderID="BodyContent" runat="server">
+        <div class="view">
+            <ul class="todo-list" data-bind="foreach: toDoItems">
+                <li  data-bind="css: { completed: completed}">
+                    <div class="items_view">
+                        <input class="toggle" data-bind="checked: completed" type="checkbox">
+                        <label data-bind="text: title"></label>
+                        <button class="destroy" data-bind="click: $root.removeToDoItem"></button>
+                        <!--ko if: completed -->
+                        <label class="status statusComplete">Completed</label>
+                        <!-- /ko -->
+                        <!--ko ifnot: completed -->
+                        <label class="status statusInProgress">InProgress</label>
+                        <!-- /ko -->
+                    </div>
+                </li>
+            </ul>          
 
-        <input class="txt" />
-        <button data-bind="click: addToDoItem">Add Item</button>
+            <input class="txt" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: addToDoItem" placeholder="Add new todo item" autofocus />
+            <button data-bind="click: addToDoItem">Add new item</button>
 
-    </div>
-</asp:Content>
+        </div>
+    </asp:Content>
+    </body>
 
 <asp:Content ContentPlaceHolderID="ExtraScriptContent" runat="server">
     <script type="text/javascript" src='~/ViewModel/TodoListVM.js'></script>
