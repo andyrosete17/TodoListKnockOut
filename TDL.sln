@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL", "TDL\TDL.csproj", "{E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL.Tests", "TDL.Tests\TDL.Tests.csproj", "{7C5AFF60-2247-4EFD-A4A3-15D33ED71CAE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.front", "2.front", "{2AC9F595-8460-4CBB-91F4-F57306439A86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.test", "1.test", "{0E50D072-3580-435A-B6DB-48E1C8D58658}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Domain", "4.Domain", "{FAD170F6-3DC9-4BA9-BEDC-31CA1C5B3458}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.services", "3.services", "{0BD5F02B-B6ED-444D-B4E9-7DAED6F4838E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1B59557-FA7C-41F9-ACEA-1695B8918ED0} = {2AC9F595-8460-4CBB-91F4-F57306439A86}
+		{7C5AFF60-2247-4EFD-A4A3-15D33ED71CAE} = {0E50D072-3580-435A-B6DB-48E1C8D58658}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E40B3E51-0D03-4732-AF7C-14EC13095B4D}
