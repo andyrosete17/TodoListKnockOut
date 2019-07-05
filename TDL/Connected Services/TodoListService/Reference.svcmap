@@ -23,10 +23,9 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="TodoListService.xsd" MetadataType="Schema" ID="7898201b-dff4-4757-ab19-1ee09be5f051" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?xsd=xsd0" />
-    <MetadataFile FileName="TodoListService1.xsd" MetadataType="Schema" ID="61bd98f8-60c0-4a1b-aecb-6671c41f2433" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TodoListService2.xsd" MetadataType="Schema" ID="5fdaec7c-f620-4d29-8ed7-8bc2ba35821c" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?xsd=xsd1" />
     <MetadataFile FileName="TodoListService.disco" MetadataType="Disco" ID="1ed504c4-9c9e-4c85-956b-47439cbbcb28" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?disco" />
     <MetadataFile FileName="TodoListService.wsdl" MetadataType="Wsdl" ID="42f29c75-939a-412b-878e-8daedcacc1dd" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?wsdl" />
-    <MetadataFile FileName="TodoListService2.xsd" MetadataType="Schema" ID="5fdaec7c-f620-4d29-8ed7-8bc2ba35821c" SourceId="1" SourceUrl="http://localhost:62638/TodoListService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -156,9 +156,6 @@
     <None Include="Connected Services\TodoListService\TodoListService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TodoListService\TodoListService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\TodoListService\TodoListService2.xsd">
       <SubType>Designer</SubType>
     </None>

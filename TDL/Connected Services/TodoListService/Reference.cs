@@ -16,28 +16,28 @@ namespace TDL.Front.TodoListService {
     public interface ITodoListService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/GetAllData", ReplyAction="http://tempuri.org/ITodoListService/GetAllDataResponse")]
-        TDL.Services.Models.Response GetAllData();
+        string GetAllData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/GetAllData", ReplyAction="http://tempuri.org/ITodoListService/GetAllDataResponse")]
-        System.Threading.Tasks.Task<TDL.Services.Models.Response> GetAllDataAsync();
+        System.Threading.Tasks.Task<string> GetAllDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/AddNewItem", ReplyAction="http://tempuri.org/ITodoListService/AddNewItemResponse")]
-        TDL.Services.Models.Response AddNewItem(string description);
+        string AddNewItem(string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/AddNewItem", ReplyAction="http://tempuri.org/ITodoListService/AddNewItemResponse")]
-        System.Threading.Tasks.Task<TDL.Services.Models.Response> AddNewItemAsync(string description);
+        System.Threading.Tasks.Task<string> AddNewItemAsync(string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/RemoveData", ReplyAction="http://tempuri.org/ITodoListService/RemoveDataResponse")]
-        TDL.Services.Models.Response RemoveData(System.Guid id);
+        string RemoveData(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/RemoveData", ReplyAction="http://tempuri.org/ITodoListService/RemoveDataResponse")]
-        System.Threading.Tasks.Task<TDL.Services.Models.Response> RemoveDataAsync(System.Guid id);
+        System.Threading.Tasks.Task<string> RemoveDataAsync(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/ChangeStatus", ReplyAction="http://tempuri.org/ITodoListService/ChangeStatusResponse")]
-        TDL.Services.Models.Response ChangeStatus(System.Guid id, string status);
+        string ChangeStatus(System.Guid id, string status);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITodoListService/ChangeStatus", ReplyAction="http://tempuri.org/ITodoListService/ChangeStatusResponse")]
-        System.Threading.Tasks.Task<TDL.Services.Models.Response> ChangeStatusAsync(System.Guid id, string status);
+        System.Threading.Tasks.Task<string> ChangeStatusAsync(System.Guid id, string status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,35 +67,35 @@ namespace TDL.Front.TodoListService {
                 base(binding, remoteAddress) {
         }
         
-        public TDL.Services.Models.Response GetAllData() {
+        public string GetAllData() {
             return base.Channel.GetAllData();
         }
         
-        public System.Threading.Tasks.Task<TDL.Services.Models.Response> GetAllDataAsync() {
+        public System.Threading.Tasks.Task<string> GetAllDataAsync() {
             return base.Channel.GetAllDataAsync();
         }
         
-        public TDL.Services.Models.Response AddNewItem(string description) {
+        public string AddNewItem(string description) {
             return base.Channel.AddNewItem(description);
         }
         
-        public System.Threading.Tasks.Task<TDL.Services.Models.Response> AddNewItemAsync(string description) {
+        public System.Threading.Tasks.Task<string> AddNewItemAsync(string description) {
             return base.Channel.AddNewItemAsync(description);
         }
         
-        public TDL.Services.Models.Response RemoveData(System.Guid id) {
+        public string RemoveData(System.Guid id) {
             return base.Channel.RemoveData(id);
         }
         
-        public System.Threading.Tasks.Task<TDL.Services.Models.Response> RemoveDataAsync(System.Guid id) {
+        public System.Threading.Tasks.Task<string> RemoveDataAsync(System.Guid id) {
             return base.Channel.RemoveDataAsync(id);
         }
         
-        public TDL.Services.Models.Response ChangeStatus(System.Guid id, string status) {
+        public string ChangeStatus(System.Guid id, string status) {
             return base.Channel.ChangeStatus(id, status);
         }
         
-        public System.Threading.Tasks.Task<TDL.Services.Models.Response> ChangeStatusAsync(System.Guid id, string status) {
+        public System.Threading.Tasks.Task<string> ChangeStatusAsync(System.Guid id, string status) {
             return base.Channel.ChangeStatusAsync(id, status);
         }
     }

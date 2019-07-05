@@ -1,18 +1,15 @@
-﻿(function () {
+﻿var viewModel;
+var ENTER_KEY = 13;
+var result;
+var todoItemsNew;
+
+(function () {
     'use strict';
 
-var ENTER_KEY = 13;
-var todoItemRead = Object();
 var ViewModel = function ToDoViewModel(toDoItems) {
     var self = this;
     // store the new todo value being entered
     this.current = ko.observable();
-
-    //self.toDoItems = ko.observableArray([
-    //    new ToDoItem("Watch Person of Interest"),
-    //    new ToDoItem("Study for Midterm exam"),
-    //    new ToDoItem("Buy groceries for Luis")
-    //]);
 
     this.toDoItems = ko.observableArray(toDoItems.map(function (todo) {
         return new ToDoItem(todo.title, todo.completed, todo.id);
@@ -21,38 +18,82 @@ var ViewModel = function ToDoViewModel(toDoItems) {
     this.addToDoItem = function () {
         var current = this.current().trim();
         if (current) {
+            var todoItemNew = new ToDoItem();
 
-            //var strMethodUrl = '@Url.Action("CreateNewTodoListItem", "Home")?description=' + current;
-            //$.getJSON(strMethodUrl, receieveResponse);
-
-            //$.get("@Url.Action("CreateNewTodoListItem", "Home")", function (response) {
-            //    todoItemRead = ko.mapping.fromJS(response);
-
-            //});
-            var response = null;
             $.ajax({
-                async: true,
                 url: "Home/CreateNewTodoListItem?description=" + current,
-                cache: false,
-                dataType: "json",
-                success: function (data) { receiveResponse(data); }
-            });
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'JSON',
+                success: function (response) {
 
-            this.toDoItems.push(new ToDoItem(current));
-            this.current('');
-        }
+                    if (response !== null) {
+                        todoItemNew = new ToDoItem(response.Description, response.Status, response.Id);
+                        viewModel.setValueMethod(todoItemNew);
+                    }
+                },
+                error: function (response) {
+
+                    window.alert(response.responseText);
+                }
+            });
+         }
     };
+    
+    this.changeStatusToDoItem = function (item) {
+        $.ajax({
+            url: "Home/ChangeStatusToDoItem?id=" + item.id() + "&status=" + item.completed(),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response !== null) {
+                    item.completed(response.Status);
+                }
+                else {
+                    window.alert(response.responseText);
+                }
+            },
+            error: function (response) {
+
+                window.alert(response.responseText);
+            }
+        });
+    }; 
 
     this.removeToDoItem = function (item) {
-        self.toDoItems.remove(item);
+        $.ajax({
+            url: "Home/RemoveTodoListItem?id=" + item.id(),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response !== null && response === true) { 
+                    viewModel.removeValueMethod(item);
+                }
+                else {
+                    window.alert(response.responseText);
+                }
+            },
+            error: function (response) {
+
+                window.alert(response.responseText);
+            }
+        });
+    };    
+
+    this.setValueMethod = function (todoItemNew) {
+        this.current('');
+        this.toDoItems.push(todoItemNew);
+    };
+
+    this.removeValueMethod = function (item) {
+        this.toDoItems.remove(item);
     };
 };
-    function receiveResponse(response) {
-
-        if (response !== null) {
-            todoItemRead = ko.mapping.fromJS(response);
-        }
-    }
+    
 function keyhandlerBindingFactory(keyCode) {
     return {
         init: function (element, valueAccessor, allBindingsAccessor, data, bindingContext) {
@@ -78,17 +119,50 @@ function keyhandlerBindingFactory(keyCode) {
     };
 }
 
+
+// check local storage for todos
+var toDoItems = ko.utils.parseJson(localStorage.getItem('todos-knockoutjs'));
+viewModel = new ViewModel(toDoItems || []);
+// a custom binding to handle the enter key
+ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY);
+
+ko.applyBindings(viewModel);
+}());
+
+
+GetAllToDoItem = function () {
+    $.ajax({
+        url: "Home/GetAllToDoItem",
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'JSON',
+        success: function (response) {
+            if (response !== null) {
+                response.forEach(function (item, index, array) {
+                    todoItemNew = new ToDoItem(item.Description,
+                        item.Status,
+                        item.Id);
+                    viewModel.toDoItems.push(todoItemNew);
+                });
+                  
+            }            
+        },
+        error: function (response) {
+
+            window.alert(response.responseText);
+        }
+    });
+};
+
+function Init() {
+    this.todoItemsNew = [];
+    GetAllToDoItem();
+    
+}
+
 // represent a single todo item
 var ToDoItem = function (title, completed, id) {
     this.title = ko.observable(title);
     this.completed = ko.observable(completed);
     this.id = ko.observable(id);
 };
-// check local storage for todos
-var toDoItems = ko.utils.parseJson(localStorage.getItem('todos-knockoutjs'));
-var viewModel = new ViewModel(toDoItems || []);
-// a custom binding to handle the enter key
-ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY);
-
-ko.applyBindings(viewModel);
-}());

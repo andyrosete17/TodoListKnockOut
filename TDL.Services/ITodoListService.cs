@@ -9,15 +9,15 @@
     public interface ITodoListService
     {
         [OperationContract]
-        Response GetAllData();
+        string GetAllData();
 
         [OperationContract]
-        Response AddNewItem(string description);
+        string AddNewItem(string description);
 
         [OperationContract]
-        Response RemoveData(Guid id);
+        string RemoveData(Guid id);
 
         [OperationContract]
-        Response ChangeStatus(Guid id, string status);
+        string ChangeStatus(Guid id, string status);
     }
 }

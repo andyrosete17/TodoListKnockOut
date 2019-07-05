@@ -4,6 +4,7 @@
     using TDL.Front.TodoListService;
     using TDL.Common;
     using TDL.Services.Models;
+    using Newtonsoft.Json;
 
     public class TodoListCommand
     {
@@ -17,7 +18,8 @@
                 {
                     if (service != null)
                     {
-                        result = service.AddNewItem(description);
+                        var jsonResult = service.AddNewItem(description);
+                        result = JsonConvert.DeserializeObject<Response>(jsonResult);
                     }
                 }
                 catch (Exception)
@@ -38,7 +40,8 @@
             {
                 if (service != null)
                 {
-                    result = service.RemoveData(id);
+                    var jsonResult=  service.RemoveData(id);
+                    result = JsonConvert.DeserializeObject<Response>(jsonResult);
                 }
             }
             catch (Exception)
@@ -62,7 +65,8 @@
             {
                 if (service != null)
                 {
-                    result = service.ChangeStatus(id, status);
+                    var jsonResult = service.ChangeStatus(id, status);
+                    result = JsonConvert.DeserializeObject<Response>(jsonResult);
                 }
             }
             catch (Exception)
@@ -86,7 +90,8 @@
             {
                 if (service != null)
                 {
-                    result = service.GetAllData();
+                    var jsonResult = service.GetAllData();
+                    result = JsonConvert.DeserializeObject<Response>(jsonResult);
                 }
             }
             catch (Exception)

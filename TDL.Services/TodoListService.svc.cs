@@ -1,5 +1,6 @@
 ﻿namespace TDL.Services
 {
+    using Newtonsoft.Json;
     using System;
     using TDL.Common;
     using TDL.Common.Enums;
@@ -36,7 +37,7 @@
             _repository = repository;
         }
 
-        public Response AddNewItem(string description)
+        public string AddNewItem(string description)
         {
             var result = _repository.Create();
             var item = result.Result as ToDoListItems;
@@ -44,34 +45,38 @@
             item.Id = Guid.NewGuid();
             item.Status = ToDoListStatusEnum.InProgress;
             result.Result = item;
+            var jsonResult = JsonConvert.SerializeObject(result);
             var response = MapResults(result);
             _repository.CommitContextChanges();
-            return response;
+            return jsonResult;
         }
 
-       
-
-        public Response ChangeStatus(Guid id, string status)
+        public string ChangeStatus(Guid id, string status)
         {
             var result = _repository.Get(id);
             var item = result.Result as ToDoListItems;
-            item.Status = (ToDoListStatusEnum)Enum.Parse(typeof(ToDoListStatusEnum), status);
+            bool.TryParse(status, out var statusEnumValue);
+
+            item.Status = statusEnumValue ? ToDoListStatusEnum.Completed : ToDoListStatusEnum.InProgress;
+            var jsonResult = JsonConvert.SerializeObject(result);
             var response = MapResults(result);
             _repository.CommitContextChanges();
-            return response;
+            return jsonResult;
         }
 
-        public Response GetAllData()
+        public string GetAllData()
         {
-            return _repository.GetAll();
+            var result=  _repository.GetAll();
+            var jsonResult = JsonConvert.SerializeObject(result);
+            return jsonResult;
         }
 
-        public Response RemoveData(Guid id)
+        public string RemoveData(Guid id)
         {
             var result = _repository.RemoveData(id);
-            var response = MapResults(result);
+            var jsonResult = JsonConvert.SerializeObject(result);            
             _repository.CommitContextChanges();
-            return response;
+            return jsonResult;
         }
 
         private Response MapResults(Response result)

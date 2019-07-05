@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,8 @@ namespace TDL.Controllers
             return View();
         }
 
-        public JsonResult CreateNewTodoListItem(string description)
+        [HttpPost]
+        public string CreateNewTodoListItem(string description)
         {
             var result = new object();
             var command = new TodoListCommand();
@@ -32,10 +34,65 @@ namespace TDL.Controllers
             }
             else
             {
-                ViewBag.Message = $"Your application crash, Error: {response.Message} ";
+                result = response.Message;
             }
 
-            return Json(result);
+            return result.ToString();
+        }
+
+        [HttpPost]
+        public string RemoveTodoListItem(Guid id)
+        {
+            var result = new object();
+            var command = new TodoListCommand();
+            var response = command.RemoveToDoItem(id);
+            if (response.IsSuccess)
+            {
+                result = JsonConvert.SerializeObject(response.IsSuccess); 
+            }
+            else
+            {
+                result = response.Message;
+            }
+
+            return result.ToString();
+        }
+
+        [HttpPost]
+        public string GetAllToDoItem()
+        {
+            var result = new object();
+            var command = new TodoListCommand();
+            var response = command.GetAllToDoItem();
+            if (response.IsSuccess)
+            {
+                result = response.Result;
+            }
+            else
+            {
+                result = response.Message;
+            }
+
+            return result.ToString();
+        }
+
+        [HttpPost]
+        public string ChangeStatusToDoItem(Guid id, string status)
+        {
+            var result = new object();
+            var command = new TodoListCommand();
+            var response = command.ChangeStatusToDoItem(id, status);
+            if (response.IsSuccess)
+            {
+                result = response.Result;
+            }
+            else
+            {
+                result = response.Message;
+            }
+
+            return result.ToString();
         }
     }
 }
+
