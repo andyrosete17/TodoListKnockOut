@@ -94,6 +94,15 @@
     <Compile Include="Interfaces\Repository\ITodoListRepository.cs" />
     <Compile Include="IOCRegistry\TodoListServiceRegistry.cs" />
     <Compile Include="ITodoListService.cs" />
+    <Compile Include="Migrations\201907050103444_FirstMigration.cs" />
+    <Compile Include="Migrations\201907050103444_FirstMigration.Designer.cs">
+      <DependentUpon>201907050103444_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907050113326_ConfigurationUpdated.cs" />
+    <Compile Include="Migrations\201907050113326_ConfigurationUpdated.Designer.cs">
+      <DependentUpon>201907050113326_ConfigurationUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LocalDataContext.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,11 +130,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <EmbeddedResource Include="Migrations\201907050103444_FirstMigration.resx">
+      <DependentUpon>201907050103444_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907050113326_ConfigurationUpdated.resx">
+      <DependentUpon>201907050113326_ConfigurationUpdated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

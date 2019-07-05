@@ -2,6 +2,8 @@
 {
     using System;
     using TDL.Front.TodoListService;
+    using TDL.Common;
+    using TDL.Services.Models;
 
     public class TodoListCommand
     {
@@ -22,11 +24,7 @@
                 {
                     return result;
                 }
-                finally
-                {
-                    service.Close();
-
-                }
+              
             }
             return result;
         }

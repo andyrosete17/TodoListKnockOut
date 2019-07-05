@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using TDL.Common;
     using TDL.Common.Interfaces;
+    using TDL.Domain;
     using TDL.Services.Interfaces;
     using TDL.Services.Interfaces.Repository;
     using TDL.Services.Models;
@@ -15,9 +17,11 @@
         private readonly DbSet<TEntity> dbSet;
         Response response; 
 
-        public TodoListRepository()
+        public TodoListRepository(ILocalDataContext dataContext)
         {
             this.response = new Response();
+            this.DataContext = dataContext;
+            this.dbSet = this.DataContext.GetDbSet<TEntity>();
         }
         public Response GetAll()
         {

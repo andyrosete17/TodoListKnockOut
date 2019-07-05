@@ -9,11 +9,8 @@
     [Table("TodoListItems")]
     public class ToDoListItems : IEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         [Key]
-        public Guid TodoListId { get; set; }
+        public Guid Id { get; set; }
 
         [StringLength(100)]
         public string Description { get; set; }

@@ -47,7 +47,7 @@ var ViewModel = function ToDoViewModel(toDoItems) {
         self.toDoItems.remove(item);
     };
 };
-    function receieveResponse(response) {
+    function receiveResponse(response) {
 
         if (response !== null) {
             todoItemRead = ko.mapping.fromJS(response);

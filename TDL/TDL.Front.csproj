@@ -135,9 +135,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Connected Services\TodoListService\TDL.Front.TodoListService.Response.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\TodoListService\TodoListService.disco" />
     <None Include="Connected Services\TodoListService\configuration91.svcinfo" />
     <None Include="Connected Services\TodoListService\configuration.svcinfo" />
@@ -165,6 +162,8 @@
     <None Include="Connected Services\TodoListService\TodoListService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\TDL.Common.Response.datasource" />
+    <Content Include="Properties\DataSources\TDL.Services.Models.Response.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -217,6 +216,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\TodoListService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TDL.Common\TDL.Common.csproj">
+      <Project>{d265ffa4-c773-4333-a70d-63ab10ef6da6}</Project>
+      <Name>TDL.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TDL.Services\TDL.Services.csproj">
+      <Project>{BD81D2D0-3F69-4A8B-AB17-96505C6EEB5C}</Project>
+      <Name>TDL.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

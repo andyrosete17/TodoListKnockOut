@@ -1,7 +1,9 @@
 ﻿namespace TDL.Services.Interfaces.Repository
 {
     using System;
+    using TDL.Common;
     using TDL.Common.Interfaces;
+    using TDL.Domain;
     using TDL.Services.Models;
 
     public interface ITodoListRepository<TEntity>

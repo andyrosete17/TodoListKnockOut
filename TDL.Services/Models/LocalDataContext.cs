@@ -9,7 +9,7 @@
 
     public class LocalDataContext : DataContext, ILocalDataContext
     {
-        public DbSet<ToDoListItems> CalculatorOperations { get; set; }
+        public DbSet<ToDoListItems> TodoListItems { get; set; }
         public DataContext dataContext;
 
         public LocalDataContext()

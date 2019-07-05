@@ -1,6 +1,7 @@
 ﻿namespace TDL.Services
 {
     using System;
+    using TDL.Common;
     using TDL.Common.Enums;
     using TDL.Domain;
     using TDL.Services.Interfaces.Repository;
@@ -43,18 +44,21 @@
             item.Id = Guid.NewGuid();
             item.Status = ToDoListStatusEnum.InProgress;
             result.Result = item;
+            var response = MapResults(result);
             _repository.CommitContextChanges();
-            return result;
+            return response;
         }
+
+       
 
         public Response ChangeStatus(Guid id, string status)
         {
-            var item = _repository.Get(id);
-            var result = item.Result as ToDoListItems;
-            result.Status = (ToDoListStatusEnum)Enum.Parse(typeof(ToDoListStatusEnum), status);
+            var result = _repository.Get(id);
+            var item = result.Result as ToDoListItems;
+            item.Status = (ToDoListStatusEnum)Enum.Parse(typeof(ToDoListStatusEnum), status);
+            var response = MapResults(result);
             _repository.CommitContextChanges();
-            item.Result = result;
-            return item;
+            return response;
         }
 
         public Response GetAllData()
@@ -65,9 +69,19 @@
         public Response RemoveData(Guid id)
         {
             var result = _repository.RemoveData(id);
+            var response = MapResults(result);
             _repository.CommitContextChanges();
+            return response;
+        }
 
-            return result;
+        private Response MapResults(Response result)
+        {
+            return new Response
+            {
+                IsSuccess = result.IsSuccess,
+                Result = result.Result,
+                Message = result.Message
+            };
         }
     }
 }
