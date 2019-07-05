@@ -2,20 +2,43 @@
     'use strict';
 
 var ENTER_KEY = 13;
-
+var todoItemRead = Object();
 var ViewModel = function ToDoViewModel(toDoItems) {
     var self = this;
     // store the new todo value being entered
     this.current = ko.observable();
 
+    //self.toDoItems = ko.observableArray([
+    //    new ToDoItem("Watch Person of Interest"),
+    //    new ToDoItem("Study for Midterm exam"),
+    //    new ToDoItem("Buy groceries for Luis")
+    //]);
+
     this.toDoItems = ko.observableArray(toDoItems.map(function (todo) {
-        return new ToDoItem(todo.title, todo.completed);
+        return new ToDoItem(todo.title, todo.completed, todo.id);
     }));
 
     this.addToDoItem = function () {
         var current = this.current().trim();
         if (current) {
-            this.toDoItems.push(new ToDoItem(current, false));
+
+            //var strMethodUrl = '@Url.Action("CreateNewTodoListItem", "Home")?description=' + current;
+            //$.getJSON(strMethodUrl, receieveResponse);
+
+            //$.get("@Url.Action("CreateNewTodoListItem", "Home")", function (response) {
+            //    todoItemRead = ko.mapping.fromJS(response);
+
+            //});
+            var response = null;
+            $.ajax({
+                async: true,
+                url: "Home/CreateNewTodoListItem?description=" + current,
+                cache: false,
+                dataType: "json",
+                success: function (data) { receiveResponse(data); }
+            });
+
+            this.toDoItems.push(new ToDoItem(current));
             this.current('');
         }
     };
@@ -24,7 +47,12 @@ var ViewModel = function ToDoViewModel(toDoItems) {
         self.toDoItems.remove(item);
     };
 };
+    function receieveResponse(response) {
 
+        if (response !== null) {
+            todoItemRead = ko.mapping.fromJS(response);
+        }
+    }
 function keyhandlerBindingFactory(keyCode) {
     return {
         init: function (element, valueAccessor, allBindingsAccessor, data, bindingContext) {
@@ -51,9 +79,10 @@ function keyhandlerBindingFactory(keyCode) {
 }
 
 // represent a single todo item
-var ToDoItem = function (title, completed) {
+var ToDoItem = function (title, completed, id) {
     this.title = ko.observable(title);
     this.completed = ko.observable(completed);
+    this.id = ko.observable(id);
 };
 // check local storage for todos
 var toDoItems = ko.utils.parseJson(localStorage.getItem('todos-knockoutjs'));

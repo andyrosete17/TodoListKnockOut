@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL.Front", "TDL\TDL.Front.csproj", "{E1B59557-FA7C-41F9-ACEA-1695B8918ED0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BD81D2D0-3F69-4A8B-AB17-96505C6EEB5C} = {BD81D2D0-3F69-4A8B-AB17-96505C6EEB5C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDL.Tests", "TDL.Tests\TDL.Tests.csproj", "{7C5AFF60-2247-4EFD-A4A3-15D33ED71CAE}"
 EndProject

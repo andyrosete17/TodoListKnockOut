@@ -10,7 +10,7 @@
     public class ToDoListItems : IEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Key]
         public Guid TodoListId { get; set; }
