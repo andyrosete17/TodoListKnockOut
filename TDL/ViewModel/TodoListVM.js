@@ -30,6 +30,7 @@ var ViewModel = function ToDoViewModel(toDoItems) {
                     if (response !== null) {
                         todoItemNew = new ToDoItem(response.Description, response.Status, response.Id);
                         viewModel.setValueMethod(todoItemNew);
+                        Sorted();
                     }
                 },
                 error: function (response) {
@@ -50,6 +51,7 @@ var ViewModel = function ToDoViewModel(toDoItems) {
 
                 if (response !== null) {
                     item.completed(response.Status);
+                    Sorted();
                 }
                 else {
                     window.alert(response.responseText);
@@ -72,6 +74,7 @@ var ViewModel = function ToDoViewModel(toDoItems) {
 
                 if (response !== null && response === true) { 
                     viewModel.removeValueMethod(item);
+                    Sorted();
                 }
                 else {
                     window.alert(response.responseText);
@@ -138,14 +141,15 @@ GetAllToDoItem = function () {
         dataType: 'JSON',
         success: function (response) {
             if (response !== null) {
-                response.forEach(function (item, index, array) {
+                response.forEach(function (item) {
                     todoItemNew = new ToDoItem(item.Description,
                         item.Status,
                         item.Id);
                     viewModel.toDoItems.push(todoItemNew);
                 });
                   
-            }            
+            } 
+            Sorted();
         },
         error: function (response) {
 
@@ -158,6 +162,10 @@ function Init() {
     this.todoItemsNew = [];
     GetAllToDoItem();
     
+}
+
+function Sorted() {
+    viewModel.toDoItems.sort(function (left, right) { return left.completed() == right.completed() ? 0 : (left.completed() < right.completed() ? -1 : 1) });
 }
 
 // represent a single todo item

@@ -1,10 +1,9 @@
 ﻿namespace TDL.Front.Commands
 {
+    using Newtonsoft.Json;
     using System;
     using TDL.Front.TodoListService;
-    using TDL.Common;
     using TDL.Services.Models;
-    using Newtonsoft.Json;
 
     public class TodoListCommand
     {
