@@ -165,7 +165,7 @@ function Init() {
 }
 
 function Sorted() {
-    viewModel.toDoItems.sort(function (left, right) { return left.completed() == right.completed() ? 0 : (left.completed() < right.completed() ? -1 : 1) });
+    viewModel.toDoItems.sort(function (left, right) { return left.completed() === right.completed() ? 0 : (left.completed() < right.completed() ? -1 : 1) });
 }
 
 // represent a single todo item

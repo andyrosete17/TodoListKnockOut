@@ -39,28 +39,69 @@
 
         public string AddNewItem(string description)
         {
-            var result = _repository.Create();
-            var item = result.Result as ToDoListItems;
-            item.Description = description;
-            item.Id = Guid.NewGuid();
-            item.Status = ToDoListStatusEnum.InProgress;
-            result.Result = item;
-            var jsonResult = JsonConvert.SerializeObject(result);
-            var response = MapResults(result);
-            _repository.CommitContextChanges();
+            var jsonResult = string.Empty;
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                var error = new Response
+                {
+                    IsSuccess = false,
+                    Message = "Description can not be empty"
+                };
+            jsonResult = JsonConvert.SerializeObject(error);
+
+            }
+            else
+            {
+                var result = _repository.Create();
+                var item = result.Result as ToDoListItems;
+                item.Description = description;
+                item.Id = Guid.NewGuid();
+                item.Status = ToDoListStatusEnum.InProgress;
+                result.Result = item;
+                jsonResult = JsonConvert.SerializeObject(result);
+                var response = MapResults(result);
+                _repository.CommitContextChanges();
+            }
             return jsonResult;
         }
 
         public string ChangeStatus(Guid id, string status)
         {
-            var result = _repository.Get(id);
-            var item = result.Result as ToDoListItems;
-            bool.TryParse(status, out var statusEnumValue);
+            var jsonResult = string.Empty;
+            if (string.IsNullOrWhiteSpace(status))
+            {
+                var error = new Response
+                {
+                    IsSuccess = false,
+                    Message = "Status can not be empty"
+                };
+                jsonResult = JsonConvert.SerializeObject(error);
 
-            item.Status = statusEnumValue ? ToDoListStatusEnum.Completed : ToDoListStatusEnum.InProgress;
-            var jsonResult = JsonConvert.SerializeObject(result);
-            var response = MapResults(result);
-            _repository.CommitContextChanges();
+            }
+            else
+            {
+
+                var result = _repository.Get(id);
+                if (result == null)
+                {
+                    var error = new Response
+                    {
+                        IsSuccess = false,
+                        Message = "Todo item could not be found"
+                    };
+                    jsonResult = JsonConvert.SerializeObject(error);
+                }
+                else
+                {
+                    var item = result.Result as ToDoListItems;
+                    bool.TryParse(status, out var statusEnumValue);
+
+                    item.Status = statusEnumValue ? ToDoListStatusEnum.Completed : ToDoListStatusEnum.InProgress;
+                    jsonResult = JsonConvert.SerializeObject(result);
+                    var response = MapResults(result);
+                    _repository.CommitContextChanges();
+                }
+            }
             return jsonResult;
         }
 
