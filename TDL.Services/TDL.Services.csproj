@@ -127,7 +127,7 @@
       <Project>{D265FFA4-C773-4333-A70D-63AB10EF6DA6}</Project>
       <Name>TDL.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TDL.Domain\TDL.Domain\TDL.Domain\TDL.Domain.csproj">
+    <ProjectReference Include="..\TDL.Domain\TDL.Domain.csproj">
       <Project>{99A9B3BA-3EB4-4AE7-9BEF-1198C8634D99}</Project>
       <Name>TDL.Domain</Name>
     </ProjectReference>
