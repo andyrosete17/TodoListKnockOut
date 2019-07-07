@@ -4,13 +4,13 @@
 <head>
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
-<body>
+<body onload="Init()">
     <asp:Content ContentPlaceHolderID="BodyContent" runat="server">
         <div class="view">
             <ul class="todo-list" data-bind="foreach: toDoItems">
                 <li  data-bind="css: { completed: completed}">
                     <div class="items_view">
-                        <input class="toggle" data-bind="checked: completed" type="checkbox">
+                        <input class="toggle" data-bind="checked: completed,  click: $root.changeStatusToDoItem" type="checkbox">
                         <label data-bind="text: title"></label>
                         <button class="destroy" data-bind="click: $root.removeToDoItem"></button>
                         <!--ko if: completed -->
