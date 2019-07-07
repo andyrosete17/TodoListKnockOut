@@ -130,21 +130,21 @@
       <Project>{D265FFA4-C773-4333-A70D-63AB10EF6DA6}</Project>
       <Name>TDL.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TDL.Domain\TDL.Domain\TDL.Domain\TDL.Domain.csproj">
-      <Project>{99A9B3BA-3EB4-4AE7-9BEF-1198C8634D99}</Project>
+    <ProjectReference Include="..\TDL.Domain\TDL.Domain.csproj">
+      <Project>{99a9b3ba-3eb4-4ae7-9bef-1198c8634d99}</Project>
       <Name>TDL.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TDL.Front\TDL.Front.csproj">
+      <Project>{e1b59557-fa7c-41f9-acea-1695b8918ed0}</Project>
+      <Name>TDL.Front</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TDL.Services\TDL.Services.csproj">
-      <Project>{BD81D2D0-3F69-4A8B-AB17-96505C6EEB5C}</Project>
+      <Project>{bd81d2d0-3f69-4a8b-ab17-96505c6eeb5c}</Project>
       <Name>TDL.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\TDL.TestUtilities\TDL.TestUtilities.csproj">
       <Project>{6BD0F847-0DF3-464E-A9A4-A8DB8830896C}</Project>
       <Name>TDL.TestUtilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TDL\TDL.Front.csproj">
-      <Project>{E1B59557-FA7C-41F9-ACEA-1695B8918ED0}</Project>
-      <Name>TDL.Front</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
